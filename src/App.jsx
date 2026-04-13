@@ -16,7 +16,6 @@ const App = (props) => {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/single" element={<Single />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/upload" element={<Upload />} />
         </Routes>
