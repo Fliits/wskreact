@@ -1,4 +1,5 @@
 import MediaRow from './MediaRow';
+import SingleView from './SingleView';
 
 const Home = () => {
   const mediaArray = [
@@ -40,6 +41,7 @@ const Home = () => {
   return (
     <>
       <h2>My Media</h2>
+      <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
       <table>
         <thead>
           <tr>

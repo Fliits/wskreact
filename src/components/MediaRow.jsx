@@ -4,6 +4,7 @@ const MediaRow = (props) => {
   return (
     <tr key={item.media_id}>
       <td>
+        <button onClick={() => props.setSelectedItem(item)}>Avaa</button>
         <img src={item.thumbnail} alt={item.title} />
       </td>
       <td>{item.title}</td>

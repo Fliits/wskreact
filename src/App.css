@@ -182,3 +182,13 @@
     border-right-color: var(--border);
   }
 }
+
+/* media item dialog */
+dialog {
+  position: fixed;
+  top: 5%;
+  height: 90%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  color: rgba(255, 255, 255, 0.87);
+}
