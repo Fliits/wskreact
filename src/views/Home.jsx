@@ -1,10 +1,25 @@
 import MediaRow from '../components/MediaRow';
 import SingleView from '../components/SingleView';
-import {useState} from 'react';
+import {fetchData} from '../utils/fetchData';
+import {useState, useEffect} from 'react';
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const mediaArray = [
+  const [mediaArray, setMediaArray] = useState([]);
+
+  useEffect(() => {
+    const getMedia = async () => {
+      try {
+        const json = await fetchData('test.json');
+        setMediaArray(json);
+      } catch (error) {
+        console.error('Error fetching media: ', error);
+      }
+    };
+    getMedia();
+  }, []);
+
+  /*const mediaArray = [
     {
       media_id: 8,
       user_id: 5,
@@ -40,6 +55,7 @@ const Home = () => {
       created_at: '2024-01-07T20:48:13.000Z',
     },
   ];
+  */
   return (
     <>
       <h2>My Media</h2>
