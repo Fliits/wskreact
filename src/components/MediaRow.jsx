@@ -1,10 +1,9 @@
 // src/components/MediaRow.jsx
-const MediaRow = (props) => {
-  const {item} = props;
+const MediaRow = ({item, setSelectedItem}) => {
   return (
     <tr key={item.media_id}>
       <td>
-        <button onClick={() => props.setSelectedItem(item)}>Avaa</button>
+        <button onClick={() => setSelectedItem(item)}>Avaa</button>
         <img src={item.thumbnail} alt={item.title} />
       </td>
       <td>{item.title}</td>
