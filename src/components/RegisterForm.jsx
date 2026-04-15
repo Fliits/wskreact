@@ -1,17 +1,33 @@
 import React from 'react';
-import useForm from '../hooks/formHooks';
-import {useUser} from '../hooks/apiHooks';
+import {useForm, errors, clearErrors} from '../hooks/formHooks';
+import {useUser, checkUser, handleError} from '../hooks/apiHooks';
 
 const RegisterForm = () => {
   const initValues = {
     username: '',
     password: '',
+    email: '',
   };
 
   const doRegister = async () => {
-    // TODO: add register functionalities here
-    const userResult = await postUser(inputs);
-    console.log(userResult);
+    try {
+      const userResult = await postUser(inputs);
+      console.log(userResult);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleUserBlur = async () => {
+    clearErrors();
+    try {
+      const checkResult = await checkUser(inputs.username);
+      console.log(checkResult);
+      if (!checkResult.available) {
+        handleError('username', 'username not available');
+      }
+      // eslint-disable-next-line no-empty
+    } catch {}
   };
 
   const {postUser} = useUser();
@@ -31,8 +47,10 @@ const RegisterForm = () => {
             type="text"
             id="registeruser"
             onChange={handleInputChange}
+            onBlur={handleUserBlur}
             autoComplete="username"
           />
+          <p>{errors?.username}</p>
         </div>
         <div>
           <label htmlFor="registerpassword">Password</label>

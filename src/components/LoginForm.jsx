@@ -12,8 +12,12 @@ const LoginForm = () => {
   const [toHome, setToHome] = useState(false);
 
   const doLogin = async () => {
-    const loginResult = await postLogin(inputs);
-    console.log(loginResult);
+    try {
+      const loginResult = await postLogin(inputs);
+      console.log(loginResult);
+    } catch (error) {
+      console.error(error.message);
+    }
   };
 
   const {postLogin} = useAuth();

@@ -44,6 +44,12 @@ const useUser = () => {
   return {postUser};
 };
 
+const checkUser = async (username) => {
+  return await fetchData(
+    import.meta.env.VITE_AUTH_API + '/users?username=' + username,
+  );
+};
+
 const useAuth = () => {
   const postLogin = async (inputs) => {
     const fetchOptions = {
@@ -63,4 +69,4 @@ const useAuth = () => {
   return {postLogin};
 };
 
-export {useMedia, useUser, useAuth};
+export {useMedia, useUser, useAuth, checkUser};
