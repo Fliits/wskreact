@@ -10,7 +10,7 @@ const useMedia = (loadMedia = true) => {
         const jsonWithUsers = await Promise.all(
           json.map(async (item) => {
             const user = await fetchData(
-              import.meta.env.VITE_MEDIA_API + '/users/' + item.user_id,
+              import.meta.env.VITE_AUTH_API + '/users/' + item.user_id,
             );
             item.username = user.username;
             return item;
