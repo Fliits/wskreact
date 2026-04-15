@@ -10,7 +10,7 @@ import './App.css';
 const App = (props) => {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Layout />
         <Routes>
           <Route path="/" element={<Home />} />

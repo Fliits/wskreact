@@ -10,10 +10,13 @@ const Single = () => {
   }
 
   return (
-    <dialog open>
+    <div>
       <button onClick={() => navigate(-1)}>sulje</button>
-      <img src={item.thumbnail} alt={item.title} />
-    </dialog>
+      <h2>{item.title}</h2>
+      <p>Owner: {item.username}</p>
+      <img src={item.filename} alt={item.title} />
+      <p>{item.description}</p>
+    </div>
   );
 };
 export default Single;
