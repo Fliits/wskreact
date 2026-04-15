@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 import {fetchData} from '../utils/fetchData';
 
-const useMedia = () => {
+const useMedia = (loadMedia = true) => {
   const [mediaArray, setMediaArray] = useState([]);
   useEffect(() => {
     const getMedia = async () => {
@@ -21,8 +21,10 @@ const useMedia = () => {
         console.error('Error fetching media: ', error);
       }
     };
-    getMedia();
-  }, []);
+    if (loadMedia) {
+      getMedia();
+    }
+  }, [loadMedia]);
 
   return mediaArray;
 };
