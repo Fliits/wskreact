@@ -1,13 +1,13 @@
 import MediaRow from '../components/MediaRow';
 import SingleView from '../components/SingleView';
-import {fetchData} from '../utils/fetchData';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
+import useMedia from '../hooks/apiHooks';
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [mediaArray, setMediaArray] = useState([]);
+  const mediaArray = useMedia([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const getMedia = async () => {
       try {
         const json = await fetchData(import.meta.env.VITE_MEDIA_API + '/media');
@@ -26,7 +26,7 @@ const Home = () => {
       }
     };
     getMedia();
-  }, []);
+  }, []); */
 
   /*const mediaArray = [
     {
