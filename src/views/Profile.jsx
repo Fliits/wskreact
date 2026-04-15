@@ -1,16 +1,31 @@
+import {useEffect, useState} from 'react';
+import {useUser} from '../hooks/apiHooks';
+
 const Profile = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
-  const email = user ? user.email : 'Unknown';
-  const password = user ? user.password : 'Unknown';
-  const username = user ? user.username : 'Unknown';
+  const [user, setUser] = useState(null);
+
+  const {getUserByToken} = useUser();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem('token');
+      const userResponse = await getUserByToken(token);
+      setUser(userResponse.user);
+    };
+    getUser();
+  }, [getUserByToken]);
 
   return (
-    <div>
-      <h3>Profile</h3>
-      <p>email: {email}</p>
-      <p>password: {password}</p>
-      <p>username: {username}</p>
-    </div>
+    <>
+      {user && (
+        <>
+          <h3>Profile</h3>
+          <p>email: {user?.email}</p>
+          <p>password: {user?.password}</p>
+          <p>username: {user?.username}</p>
+        </>
+      )}
+    </>
   );
 };
 
