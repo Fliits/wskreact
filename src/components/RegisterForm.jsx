@@ -1,6 +1,6 @@
 import React from 'react';
-import {useForm, errors, clearErrors} from '../hooks/formHooks';
-import {useUser, checkUser, handleError} from '../hooks/apiHooks';
+import useForm from '../hooks/formHooks';
+import {useUser, checkUser} from '../hooks/apiHooks';
 
 const RegisterForm = () => {
   const initValues = {
@@ -30,12 +30,17 @@ const RegisterForm = () => {
     } catch {}
   };
 
-  const {postUser} = useUser();
+  const {postUser, checkUser} = useUser();
 
-  const {inputs, handleInputChange, handleSubmit} = useForm(
-    doRegister,
-    initValues,
-  );
+  const {
+    inputs,
+    handleInputChange,
+    handleSubmit,
+    errors,
+    handleError,
+    clearErrors,
+  } = useForm(doRegister, initValues);
+
   return (
     <>
       <h1>Register</h1>
