@@ -2,6 +2,7 @@ import MediaRow from '../components/MediaRow';
 import SingleView from '../components/SingleView';
 import {useState} from 'react';
 import {useMedia} from '../hooks/apiHooks';
+import './Home.css';
 
 const Home = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -66,31 +67,30 @@ const Home = () => {
   ];
   */
   return (
-    <>
-      <h2>My Media</h2>
+    <div className="home-container">
       <SingleView item={selectedItem} setSelectedItem={setSelectedItem} />
-      <table>
-        <thead>
-          <tr>
-            <th>Thumbnail</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Created</th>
-            <th>Size</th>
-            <th>Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          {mediaArray.map((item) => (
-            <MediaRow
-              key={item.media_id}
-              setSelectedItem={setSelectedItem}
-              item={item}
-            />
-          ))}
-        </tbody>
-      </table>
-    </>
+      <section className="gallery-section">
+        <div className="gallery-header">
+          <h2>Your Media</h2>
+          <p className="gallery-subtitle">Explore and manage your collection</p>
+        </div>
+        <div className="gallery-grid">
+          {mediaArray.length > 0 ? (
+            mediaArray.map((item) => (
+              <MediaRow
+                key={item.media_id}
+                setSelectedItem={setSelectedItem}
+                item={item}
+              />
+            ))
+          ) : (
+            <div className="gallery-empty">
+              <p>No media yet. Start by uploading your first file.</p>
+            </div>
+          )}
+        </div>
+      </section>
+    </div>
   );
 };
 export default Home;
