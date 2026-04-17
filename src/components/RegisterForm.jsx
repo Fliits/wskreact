@@ -1,6 +1,6 @@
 import React from 'react';
 import useForm from '../hooks/formHooks';
-import {useUser, checkUser} from '../hooks/apiHooks';
+import {useUser} from '../hooks/apiHooks';
 
 const RegisterForm = () => {
   const initValues = {

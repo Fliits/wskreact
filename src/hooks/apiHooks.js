@@ -41,15 +41,26 @@ const useUser = () => {
 
     return await fetchData(import.meta.env.VITE_AUTH_API + '/users', options);
   };
-  return {postUser};
-};
 
-const checkUser = async (username) => {
-  return await fetchData(
-    import.meta.env.VITE_AUTH_API + '/users?username=' + username,
-  );
-};
+  const getUserByToken = async (token) => {
+    const options = {
+      headers: {
+        authorization: 'Bearer ' + token,
+      },
+    };
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users/token',
+      options,
+    );
+  };
 
+  const checkUser = async (username) => {
+    return await fetchData(
+      import.meta.env.VITE_AUTH_API + '/users?username=' + username,
+    );
+  };
+  return {postUser, checkUser, getUserByToken};
+};
 const useAuth = () => {
   const postLogin = async (inputs) => {
     const fetchOptions = {
@@ -63,10 +74,9 @@ const useAuth = () => {
       import.meta.env.VITE_AUTH_API + '/auth/login',
       fetchOptions,
     );
-    localStorage.setItem('token', loginResult.token);
+    //localStorage.setItem('token', loginResult.token);
     return loginResult;
   };
   return {postLogin};
 };
-
-export {useMedia, useUser, useAuth, checkUser};
+export {useMedia, useUser, useAuth};
