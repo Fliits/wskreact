@@ -1,7 +1,9 @@
+import {useState} from 'react';
 import MediaRow from './MediaRow';
 import SingleView from './SingleView';
 
 const Home = () => {
+  const [selectedItem, setSelectedItem] = useState(null);
   const mediaArray = [
     {
       media_id: 8,
