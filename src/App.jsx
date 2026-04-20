@@ -29,14 +29,7 @@ const App = (props) => {
                 </ProtectedRoute>
               }
             />
-            <Route
-              path="/upload"
-              element={
-                <ProtectedRoute>
-                  <Upload />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/upload" element={<Upload />} />
           </Routes>
         </UserProvider>
       </BrowserRouter>
