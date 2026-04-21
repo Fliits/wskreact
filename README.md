@@ -1,6 +1,6 @@
 # React + Vite
 
-Open [link text here](https://users.metropolia.fi/~aatulaa/context) to view it in browser.
+Open [link text here](https://users.metropolia.fi/~aatulaa/wskreact/context) to view it in browser.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
