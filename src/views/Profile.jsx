@@ -12,7 +12,6 @@ const Profile = () => {
     <div>
       <h3>Profile</h3>
       <p>email: {user?.email || 'Unknown'}</p>
-      <p>password: {user?.password || 'Unknown'}</p>
       <p>username: {user?.username || 'Unknown'}</p>
     </div>
   );
