@@ -42,7 +42,32 @@ const useMedia = (loadMedia = true) => {
     return await fetchData(import.meta.env.VITE_MEDIA_API + '/media', options);
   };
 
-  return {mediaArray, postMedia};
+  const deleteMedia = async (token) => {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    return await fetchData(import.meta.env.VITE_MEDIA_API + '/media', options);
+  };
+
+  const modifyMedia = async (token, inputs, file) => {
+    const data = {
+      ...inputs,
+      ...file,
+    };
+    const options = {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    };
+    return await fetchData(import.meta.env.VITE_MEDIA_API + '/media', options);
+  };
+
+  return {mediaArray, postMedia, deleteMedia, modifyMedia};
 };
 
 const useUser = () => {

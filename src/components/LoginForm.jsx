@@ -1,6 +1,5 @@
 import React from 'react';
 import useForm from '../hooks/formHooks';
-import {useAuth} from '../hooks/apiHooks';
 import {Navigate} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
 
