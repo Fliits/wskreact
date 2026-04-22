@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {useLike} from '../hooks/apiHooks';
 
-const Likes = ({media_id}) => {
+const Likes = ({mediaId}) => {
   const [likes, setLikes] = useState(0);
   const [userLike, setUserLike] = useState(false);
   const [updateLike, setUpdateLike] = useState(false);
@@ -11,7 +11,7 @@ const Likes = ({media_id}) => {
   useEffect(() => {
     const getLikes = async () => {
       try {
-        const likesCount = await getLikesCount(media_id);
+        const likesCount = await getLikesCount(mediaId);
         setLikes(likesCount.count);
       } catch (error) {
         console.error(error.message);
@@ -23,7 +23,7 @@ const Likes = ({media_id}) => {
   useEffect(() => {
     const fetchUserLike = async () => {
       try {
-        const userLikes = await getUserLike(media_id, token);
+        const userLikes = await getUserLike(mediaId, token);
         setUserLike(userLikes);
       } catch (error) {
         console.error(error.message);
@@ -35,18 +35,19 @@ const Likes = ({media_id}) => {
   }, [updateLike]);
 
   const handleClick = async () => {
+    console.log(mediaId);
     try {
       if (!userLike) {
-        const postResult = await postLike(media_id, token);
+        const postResult = await postLike(mediaId, token);
         console.log(postResult);
-        setUserLike(null);
+        setUserLike(false);
         setUpdateLike((updateLike) => {
           return !updateLike;
         });
       } else {
-        const deleteResult = await deleteLike(media_id, token);
+        const deleteResult = await deleteLike(userLike.like_id, token);
         console.log(deleteResult);
-        setUserLike(false);
+        setUserLike(null);
         setUpdateLike((updateLike) => {
           return !updateLike;
         });

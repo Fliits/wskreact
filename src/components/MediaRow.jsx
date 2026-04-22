@@ -1,4 +1,4 @@
-import {Link} from 'react-router';
+import {Link, useNavigate} from 'react-router';
 import {useMedia} from '../hooks/apiHooks';
 import {useUserContext} from '../hooks/contextHooks';
 
@@ -6,6 +6,7 @@ import {useUserContext} from '../hooks/contextHooks';
 const MediaRow = ({item, setSelectedItem}) => {
   const {user} = useUserContext();
   const {deleteMedia} = useMedia();
+  const navigate = useNavigate();
 
   const deleteItem = async (item) => {
     try {
@@ -13,6 +14,7 @@ const MediaRow = ({item, setSelectedItem}) => {
         const token = localStorage.getItem('token');
         await deleteMedia(item.media_id, token);
         alert('Media on poistettu onnistuneesti.');
+        navigate('/');
       }
     } catch (error) {
       console.error(error.message);

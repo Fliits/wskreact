@@ -1,5 +1,6 @@
 import {Link} from 'react-router';
 import {useUserContext} from '../hooks/contextHooks';
+import ProtectedRoute from './ProtectedRoute';
 
 const Navigation = () => {
   const {user} = useUserContext();
@@ -21,9 +22,11 @@ const Navigation = () => {
           <li>
             <Link to="/profile">Profile</Link>
           </li>
-          <li>
-            <Link to="/upload">Upload</Link>
-          </li>
+          <ProtectedRoute>
+            <li>
+              <Link to="/upload">Upload</Link>
+            </li>
+          </ProtectedRoute>
           <li>
             <Link to="/logout">Logout</Link>
           </li>
