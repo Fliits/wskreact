@@ -17,7 +17,7 @@ const Navigation = () => {
         </li>
       )}
       {user && (
-        <li>
+        <ul>
           <li>
             <Link to="/profile">Profile</Link>
           </li>
@@ -27,7 +27,7 @@ const Navigation = () => {
           <li>
             <Link to="/logout">Logout</Link>
           </li>
-        </li>
+        </ul>
       )}
     </ul>
   );
